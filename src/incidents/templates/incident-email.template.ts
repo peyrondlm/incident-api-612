@@ -1,5 +1,5 @@
 import { IncidentType } from "src/core/enums/incident-type.enum";
-import { Incident } from "src/core/interfaces/incident.interface";
+import { IncidentCDto } from "src/core/interfaces/incident.interface";
 import { generateMapboxImage } from "src/core/utils/utils";
  
 const incidentTypeLabels: Record<IncidentType, { label: string; color: string; category: string }> = {
@@ -28,7 +28,7 @@ const incidentTypeLabels: Record<IncidentType, { label: string; color: string; c
     [IncidentType.OTHER]: { label: "Otro", color: "#7F8C8D", category: "Otro" },
 };
  
-export const generateIncidentEmailTemplate = (incident: Incident): string => {
+export const generateIncidentEmailTemplate = (incident: IncidentCDto): string => {
     const imageUrl = generateMapboxImage(incident.lat, incident.lon);
     const typeInfo = incidentTypeLabels[incident.type] ?? { label: "Desconocido", color: "#7F8C8D", category: "Otro" };
     const date = new Date().toLocaleDateString("es-MX", { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" });
